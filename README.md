@@ -1,5 +1,7 @@
 # kyoshin-monita-types
 
+強震モニタのJSONデータを使うようです
+
 ## install
 
 ```

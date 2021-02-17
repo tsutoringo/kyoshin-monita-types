@@ -2,7 +2,7 @@ const Report = require('./Report');
 
 /**
  * Represents EEW(Earthquake Early Warning)
- * @prop {Report} report EEW report
+ * @prop {Report} [report] EEW report
  * @prop {Date} earthquakeTime Earthquake occurrence time
  * @prop {String} regionName name of Erathquake Regeion
  * @prop {String} latitude epicenter latitude
@@ -13,7 +13,9 @@ const Report = require('./Report');
  */
 class EEW {
 	constructor (obj) {
-		this.report = new Report(obj.report_id, obj.report_num, obj.report_time);
+		if (obj.report_id || obj.report_num || obj.report_time) this.report = new Report(obj.report_id, obj.report_num, obj.report_time);
+		else this.report = void 0;
+
 		this.earthquakeTime = new Date(
 			(time => `${time[1]}/${time[2]}/${time[3]} ${time[4]}:${time[5]}:${time[6]}`)
 			(obj.origin_time.match(/^(\d{4})(\d{2})(\d{2})(\d{2})(\d{2})(\d{2})$/))
@@ -28,7 +30,11 @@ class EEW {
 			final: obj.is_final,
 			cancel: obj.is_cancel,
 			training: obj.is_training
-		}
+		};
+	}
+
+	get hasReport () {
+		return !!this.report;
 	}
 }
 
