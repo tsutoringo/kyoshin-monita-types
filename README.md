@@ -3,5 +3,5 @@
 ## install
 
 ```
-npm i --save tsutoringo@kyoshin-monita-types
+npm i --save tsutoringo/kyoshin-monita-types
 ```
